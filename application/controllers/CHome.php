@@ -165,36 +165,9 @@ class CHome extends CI_Controller {
 		$this->load->view('VCadastroCuradorOrganizador');
 	}
 
-	public function cadastro()
-	{
-		//$id_usuario = $this->input->post('idusuario');
-		$nome = $this->input->post('nome');
-		$cpf = $this->input->post('CPF');
-		$email = $this->input->post('email');
-        $senha = $this->input->post('senha');
-        $curador = $this->input->post('curador'); 
-        $submissor = $this->input->post('submissor');
-        
-        $this->load->model('MUsuario');
-        $msg = $this->MUsuario->cadastrar($nome, $cpf, $email, $senha, $curador, $submissor);
-
-        //Atribuindo um valor para uma variável.
-        $dados = array(
-        	'nome' => $nome,
-            'cpf' => $cpf,
-            'email' => $email,
-            'senha' => $senha,
-            'mensagem' => $msg
-        );
-         
-
-        //Ao chamar a view é enviada uma variável chamada $dados para ela que pode-se utilizá-la em qualquer lugar da view.
-		$this->load->view('VCadastroUsuarioResultado', $dados);
-	}
-
-
 	public function cadastrar_usuario2(){
 		//esta funcao cadatra usuarios normais na tabela ususario
+		//cadastra usuário normal (submissor) - http://localhost/congapsp/index.php/CHome/carrega_vcadastrar
 
 		$this->load->library('form_validation');
 		$this->load->helper('security');
@@ -240,8 +213,6 @@ class CHome extends CI_Controller {
 		        		}
 		        	}
 		        }
-		        
-		        
 
 		        //carrega o model MUsuario e submeter os dados no msg
 		        $this->load->model('MUsuario');
@@ -254,6 +225,7 @@ class CHome extends CI_Controller {
 
 	public function cadastrar_usuario3(){
 		//esta funcao cadatra curadores ou organizadores nas tabelas usuario e curador
+		//cadastrar curador ou organizador - http://localhost/congapsp/index.php/CHome/cadastroespecial
 
 		$this->load->library('form_validation');
 		$this->load->helper('security');
