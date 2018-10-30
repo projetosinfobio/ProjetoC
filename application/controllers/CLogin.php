@@ -9,11 +9,17 @@ class CLogin extends CI_Controller {
     }
     
     public function index(){
+        /*
+        Função que carrega a pagina de login
+        */
         $this->load->view('login/VLogin');
         
     }
 
     public function login_user(){
+        /*
+        Função que pega os dados de login e senha e carrega o homepage adequado para o usuário conform seu perfil
+        */
 
         $alerta = null;
 
@@ -79,6 +85,9 @@ class CLogin extends CI_Controller {
     }
     
     public function sair(){
+        /*
+        Função que encerra a sessão do usuário, carregando novamente a página de login após o encerramento da sessão
+        */
         $this->session->sess_destroy();
         $this->load->view('login/VLogin');
     } 
