@@ -14,6 +14,9 @@ class CSubmissor extends CI_Controller {
 
     public function index()
     {
+        /*
+        caarrega a página inicial da página do submissor após o login
+        */
     	if ($this->session->userdata('logged_in') && ($this->session->userdata('tipo') === 'administrador'
                 || $this->session->userdata('tipo') === 'submissor'
                 ) ) {
@@ -150,7 +153,11 @@ class CSubmissor extends CI_Controller {
    
 
     public function verPareceres()
-    {
+    {   
+        /*
+        Função que acessa o banco de dados e busca os pareceres a respeito do texto selecionado
+        */
+
         //Consulta o id do submissor
         $id_do_submissor = $this->session->userdata('id');
         $id_do_texto = $this->input->post('nome_do_texto2'); 
@@ -174,6 +181,9 @@ class CSubmissor extends CI_Controller {
     }
 
     public function responder(){
+        /*
+        Função que envia a nova versão do texto e a resposta ao parecer recebido (caso houver)
+        */
   
         $id_do_texto = $this->input->post('nome_id_do_texto'); 
         $novotitulo = $this->input->post('nome_id_titulo');;
@@ -577,6 +587,10 @@ class CSubmissor extends CI_Controller {
     }
 
     public function reenviarcomprovante(){
+        /*
+        Função que reenvia o comprovante de pagamento ao sistema
+        */
+
         // ----------- Submetendo comprovante (salvando comprovante) -----------------
         //Pegando o arquivo submetido.
         //Obtendo o nome do arquivo que será salvo.
@@ -658,6 +672,9 @@ class CSubmissor extends CI_Controller {
 
     public function reenviar()
     {
+        /*
+        Função que carrega a página de reenvio de comprovante de pagamento
+        */
         $this->load->view('includes/VHeader');
         $this->load->view('submissor/VMenu_bar');
         $this->load->view('submissor/VEnviarComprovante');
@@ -666,6 +683,9 @@ class CSubmissor extends CI_Controller {
 
     public function resultados()
     {
+        /*
+        Função que carrega a página que divulga a partir de qual dia os resultados serão disponibilizados
+        */
         $this->load->view('includes/VHeader');
         $this->load->view('submissor/VMenu_bar');
         $this->load->view('submissor/VResultados');
