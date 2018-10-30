@@ -15,6 +15,9 @@ class CCurador extends CI_Controller {
     e o segundo conjunto de dados traz uma lista dos curadores quepertencem ao eixo do organizador*/
     public function index()
     {
+        /*
+        Carrega a pagina incial do curador após o login
+        */
         if ($this->session->userdata('logged_in') && ($this->session->userdata('tipo') === 'administrador'))
         {
 
@@ -59,6 +62,10 @@ class CCurador extends CI_Controller {
 
     /*este controller pega o id do submissor e edita o texto*/ 
     public function editarTexto(){  
+        /*
+        função que edita o texto do submissor caso o curador decidisse altarar algo,
+        clicando no botão "editar titulo e texto"
+        */
         //$this->load->view('VPopup');/* COM Mensagem!!!!
         $id_submissor = $this->input->post('nome_o_submissor3'); 
         $id_texto = $this->input->post('nome_do_texto5'); 
@@ -97,6 +104,9 @@ class CCurador extends CI_Controller {
 
     /*este controller pega o id do submissor e altera o status do texto para 2, ou seja, aceitar o texto*/ 
     public function aceitarTexto(){  
+        /*
+        Função que deixa o texto como aceito depois de seecionar um texto e clicar em "aceitar texto"
+        */
         //$this->load->view('VPopup');/* COM Mensagem!!!!
         $id_submissor = $this->input->post('nome_o_submissor'); 
         $id_texto = $this->input->post('nome_do_texto'); 
@@ -108,6 +118,9 @@ class CCurador extends CI_Controller {
 
     /*este controller pega o id do submissor e altera o status do texto para 3, ou seja, rejeitar o texto*/ 
     public function rejeitarTexto(){  
+        /*
+        Função que deixa o texto como rejeitado depois de seecionar um texto e clicar em "rejeitar texto"
+        */
         //$this->load->view('VPopup');/* COM Mensagem!!!!
         $id_submissor = $this->input->post('nome_o_submissor2'); 
         $id_texto = $this->input->post('nome_do_texto2'); 
@@ -223,6 +236,10 @@ class CCurador extends CI_Controller {
 
 
     public function enviar_parecer(){
+        /*
+        Função que encaminha um parecer para o submissor após selecionar um texto e clicar em 
+        "encaminhar parecer para o texto selecionado" 
+        */
         $id_do_texto = $this->input->post('name_do_texto3'); 
         $parecer = $this->input->post('name_id_parecer');
         $seq = ($this->MCurador->consultaNumeroSeq($id_do_texto)) + 1;
@@ -290,6 +307,10 @@ class CCurador extends CI_Controller {
     }
 
     public function verPareceresRespostas(){
+        /*
+        Função que busca os pareceres e respostas em relação a um texto selecionado. 
+        Precisa selecionar um texto e clicar em "ver os pareceres"
+        Carrega os pareceres e as respostas numa tabela*/
         //Consulta o id do curador
         $id_do_curador = $this->session->userdata('id');
         $id_do_texto = $this->input->post('name_do_texto4'); 
