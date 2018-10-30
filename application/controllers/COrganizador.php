@@ -15,6 +15,9 @@ class COrganizador extends CI_Controller {
     e o segundo conjunto de dados traz uma lista dos curadores quepertencem ao eixo do organizador*/
     public function index()
     {
+        /*
+        Função que carrega a página inicial do organizador após o login
+        */
         if ($this->session->userdata('logged_in') && ($this->session->userdata('tipo') === 'administrador'))
         {
         //Consulta eixo do organizador 
@@ -110,7 +113,9 @@ class COrganizador extends CI_Controller {
     /*Este função visualizar_comprovante é a função para fazer o doenload de arquivos
     usei post para montar o nome do arquivo e na hora de fazer o donload ele até faz o download mas
     acusa falhas ao abrir o pdf...triste */
-    public function visualizar_comprovante(){            
+    public function visualizar_comprovante(){   
+        /*Função que baixa o comprovante de pagamento enviado ao sistema pelo submissor depois de clicar em 
+        "visualizar o comprovante de pagamento"*/         
         $this->load->helper('download');
 
         $id_submissor = $this->input->post('name_id_submissor2');
@@ -126,6 +131,9 @@ class COrganizador extends CI_Controller {
     /*Esta é a função que altera o eixo de um texto. Seleciona o id do texto e o novo eixo pelo POST e chama 
     um model MOrganizador->alteraEixoTexto que vai busar o texto pelo id do texto e fazer a troca de eixo*/
     public function alterar_eixo(){
+        /*
+        Função que altera eixo depois de selecionar um texto e clicar no botão "alterar eixo"
+        */
         //$autor = $this->input->post('name_submissor');
         $id_texto = $this->input->post('name_id_do_texto');
         //echo 'funcionou! id texto ='.$id_texto;
@@ -163,6 +171,9 @@ class COrganizador extends CI_Controller {
     /*este controller pega o id do texto e o nome do novo curador e chama o model 
     MOrganizador->alteraCuradorParaUmTexto que vai buscar o texto pelo seu id na tabela texto e torcar o atributo do curadpr*/
     public function encaminhar_curador(){  
+        /*
+        Função que encaminha o texto para o curador depois de selcionar um texto, selecionar um curador e clicar em "encaminhar para curador"
+        */
         //$this->load->view('VPopup');/* COM Mensagem!!!!
         $id_texto = $this->input->post('name_id_do_texto');
         $id_curador = $this->input->post('name_id_do_novo_curador');   
